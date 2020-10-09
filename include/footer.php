@@ -13,10 +13,10 @@
 <!-- /.container -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="../vendor/components/jquery/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../vendor/twbs/bootstrap/dist/jsbootstrap.min.js"></script>
 
 </body>
 

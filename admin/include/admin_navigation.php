@@ -11,7 +11,7 @@
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
-      <li><a href="../index.php">HOME SITE</a></li>
+        <li><a href="../index.php">HOME SITE</a></li>
 
 
         <li class="dropdown">
@@ -31,10 +31,10 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                <a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Posty <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fas fa-mail-bulk"></i> Posty <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="posts_dropdown" class="collapse">
                     <li>
                         <a href="./posts.php">Wszystkie Posty</a>
@@ -48,10 +48,10 @@
                 <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Kategorie</a>
             </li>
             <li class="">
-                <a href="comments.php"><i class="fa fa-fw fa-file"></i> Komentarze</a>
+                <a href="comments.php"><i class="far fa-comments"></i> Komentarze</a>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Użytkownicy <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fas fa-users"></i> Użytkownicy <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
                         <a href="./users.php">Wszyscy Użytkownicy</a>
@@ -62,7 +62,7 @@
                 </ul>
             </li>
             <li class="active">
-                <a href="blank-page.html"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
+                <a href="blank-page.html"><i class="fas fa-id-card"></i> Profile</a>
             </li>
 
         </ul>

@@ -27,33 +27,30 @@
 
           <?php
 
-          if (isset($_GET['source'])){
-          $source = $_GET['source'];
-
-        } else {
-          $source = "";
-        }
+          if (isset($_GET['source'])) {
+            $source = $_GET['source'];
+          } else {
+            $source = "";
+          }
 
           switch ($source) {
             case 'add_user':
-            include "include/add_user.php";
-            break;
+              include "include/add_user.php";
+              break;
 
             case 'edit_user':
-            include "include/edit_users.php";
-            break;
+              include "include/edit_users.php";
+              break;
 
             case '200':
-            echo "nice200!";
-            break;
+              echo "nice200!";
+              break;
 
             default:
 
-            include "include/view_all_users.php";
+              include "include/view_all_users.php";
 
-            break;
-
-
+              break;
           }
 
 

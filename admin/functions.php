@@ -69,15 +69,3 @@ function delete_categories(){
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
- ?>

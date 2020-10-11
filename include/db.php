@@ -10,4 +10,3 @@ if (!$connection) {
   echo "Nie łącze z bazą!";
 }
 mysqli_query($connection, "SET NAMES 'utf8'");
- ?>

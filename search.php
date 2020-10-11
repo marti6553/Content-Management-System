@@ -1,76 +1,74 @@
 <?php include "include/db.php" ?>
 <?php include "include/header.php" ?>
 
-    <!-- Navigation -->
+<!-- Navigation -->
 
 <?php include "include/navigation.php" ?>
 
-    <!-- Page Content -->
+<!-- Page Content -->
 
-    <div class="container">
+<div class="container">
 
-        <div class="row">
+  <div class="row">
 
-            <!-- Blog Entries Column -->
+    <!-- Blog Entries Column -->
 
-            <div class="col-md-8">
+    <div class="col-md-8">
 
-              <?php
-
-
-              if (isset($_POST['submit'])) {
-                $search = $_POST['search'];
+      <?php
 
 
+      if (isset($_POST['submit'])) {
+        $search = $_POST['search'];
 
-              $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
-              $search_query = mysqli_query($connection, $query);
 
-              if (!$search_query) {
-                die("querry faile" . mysqli_error($connection));
-              }
 
-              $count = mysqli_num_rows ($search_query);
+        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
+        $search_query = mysqli_query($connection, $query);
 
-              if ($count == 0) {
-                echo "Brak wyników dla '$search'";
-              } else {
+        if (!$search_query) {
+          die("querry faile" . mysqli_error($connection));
+        }
 
-                while ($row = mysqli_fetch_assoc($search_query)) {
+        $count = mysqli_num_rows($search_query);
 
-                  $post_title = $row['post_title'];
-                  $post_author = $row['post_author'];
-                  $post_date = $row['post_date'];
-                  $post_image = $row['post_image'];
-                  $post_content = $row['post_content'];
-                  ?>
+        if ($count == 0) {
+          echo "Brak wyników dla '$search'";
+        } else {
 
-                  <h1 class="page-header">
-                      Page Heading
-                      <small>Secondary Text</small>
-                  </h1>
+          while ($row = mysqli_fetch_assoc($search_query)) {
 
-                  <!-- First Blog Post -->
-                  <h2>
-                      <a href="#"><?php echo $post_title ?></a>
-                  </h2>
-                  <p class="lead">
-                      by <a href="index.php"><?php echo $post_author ?></a>
-                  </p>
-                  <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
-                  <hr>
-                  <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
-                  <hr>
-                  <p><?php echo $post_content ?></p>
-                  <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            $post_title = $row['post_title'];
+            $post_author = $row['post_author'];
+            $post_date = $row['post_date'];
+            $post_image = $row['post_image'];
+            $post_content = $row['post_content'];
+      ?>
 
-                  <hr>
+            <h1 class="page-header">
+              Page Heading
+              <small>Secondary Text</small>
+            </h1>
 
-                  <?php }
+            <!-- First Blog Post -->
+            <h2>
+              <a href="#"><?php echo $post_title ?></a>
+            </h2>
+            <p class="lead">
+              by <a href="index.php"><?php echo $post_author ?></a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
+            <hr>
+            <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+            <hr>
+            <p><?php echo $post_content ?></p>
+            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-              }
-              } ?>
+            <hr>
 
+      <?php }
+        }
+      } ?>
 
 
 
@@ -78,15 +76,16 @@
 
 
 
-            </div>
 
-            <!-- Blog Sidebar Widgets Column -->
+    </div>
 
-<?php include "include/sidebar.php" ?>
+    <!-- Blog Sidebar Widgets Column -->
 
-        </div>
-        <!-- /.row -->
+    <?php include "include/sidebar.php" ?>
 
-        <hr>
+  </div>
+  <!-- /.row -->
 
-<?php include "include/footer.php" ?>
+  <hr>
+
+  <?php include "include/footer.php" ?>

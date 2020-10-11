@@ -70,7 +70,7 @@
         $comment_content = $_POST['comment_content'];
 
         $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
-        $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'niezatwierdzone', now())";
+        $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now())";
 
         $create_comment_query = mysqli_query($connection, $query);
         confirmQuery($create_comment_query);
@@ -112,7 +112,7 @@
       <?php
 
       $query = "SELECT * FROM comments WHERE comment_post_id = {$post_id} ";
-      $query .= "AND comment_status = 'zatwierdzone' ";
+      $query .= "AND comment_status = 'approved' ";
       $query .= "ORDER BY comment_id DESC ";
       $select_comment_query = mysqli_query($connection, $query);
       confirmQuery($select_comment_query);

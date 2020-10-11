@@ -157,13 +157,13 @@
             $select_all_draft = mysqli_query($connection, $query);
             $draft_count = mysqli_num_rows($select_all_draft);
 
-            $query = "SELECT * FROM comments WHERE comment_status = 'zatwierdzone'";
-            $select_all_zatwierdzone = mysqli_query($connection, $query);
-            $zatwierdzone_count = mysqli_num_rows($select_all_zatwierdzone);
+            $query = "SELECT * FROM comments WHERE comment_status = 'approved'";
+            $select_all_approved = mysqli_query($connection, $query);
+            $approved_count = mysqli_num_rows($select_all_approved);
 
-            $query = "SELECT * FROM comments WHERE comment_status = 'niezatwierdzone'";
-            $select_all_niezatwierdzone = mysqli_query($connection, $query);
-            $niezatwierdzone_count = mysqli_num_rows($select_all_niezatwierdzone);
+            $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
+            $select_all_unapproved = mysqli_query($connection, $query);
+            $unapproved_count = mysqli_num_rows($select_all_unapproved);
 
             $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
             $select_all_subscriber = mysqli_query($connection, $query);
@@ -188,7 +188,7 @@
                             <?php
 
                             $element_text = ['Posty', 'Posty nieopublikowane', 'Komentarze', 'Komentarze niezatwierdzone', 'Użytkownicy', 'Subskrybenci', 'Kategorie'];
-                            $element_count = [$post_count, $draft_count, $comments_count, $niezatwierdzone_count, $users_count, $subscriber_count, $categories_count];
+                            $element_count = [$post_count, $draft_count, $comments_count, $unapproved_count, $users_count, $subscriber_count, $categories_count];
 
                             for ($i = 0; $i < 7; $i++) {
                                 echo "['{$element_text[$i]}'" . ", " . "$element_count[$i]" . "],";

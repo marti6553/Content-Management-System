@@ -62,7 +62,7 @@
                 </ul>
             </li>
             <li class="active">
-                <a href="blank-page.html"><i class="fas fa-id-card"></i> Profile</a>
+                <a href="profile.php"><i class="fas fa-id-card"></i> Profile</a>
             </li>
 
         </ul>

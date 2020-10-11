@@ -1,17 +1,18 @@
 <?php
 
 
-function confirmQuery($result){
+function confirmQuery($result)
+{
 
   global $connection;
 
   if (!$result) {
     die("QUERY FAILD: " . mysqli_error($connection));
   }
-
 }
 
-function insert_categories(){
+function insert_categories()
+{
 
   global $connection;
 
@@ -33,11 +34,11 @@ function insert_categories(){
       }
     }
   }
-
 }
 
 
-function findAllCategories(){
+function findAllCategories()
+{
 
   global $connection;
 
@@ -53,19 +54,18 @@ function findAllCategories(){
     echo "<td><a href='categories.php?delete={$cat_id}'</a>Usuń</td>";
     echo "<td><a href='categories.php?edit={$cat_id}'</a>Edytuj</td>";
   }
-
 }
 
 
-function delete_categories(){
+function delete_categories()
+{
 
   global $connection;
 
-    if (isset($_GET['delete'])) {
+  if (isset($_GET['delete'])) {
     $the_cat_id = $_GET['delete'];
     $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
     $delete_categories = mysqli_query($connection, $query);
     header("Location: categories.php");
   }
-
 }

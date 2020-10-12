@@ -88,7 +88,13 @@ if (isset($_POST['create_post'])) {
 
   <div class="form-group">
     <label for="post_content">Zawartość Wpisu</label>
-    <textarea class="form-control" name="post_content" id="" cols="30" rows="10"></textarea>
+    <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"></textarea>
+    <style>
+      .ck-editor__editable_inline {
+        min-height: 250px;
+      }
+    </style>
+
   </div>
 
   <div class="form-group">
@@ -96,3 +102,5 @@ if (isset($_POST['create_post'])) {
   </div>
 
 </form>
+
+<script src="./js/scripts.js"></script>

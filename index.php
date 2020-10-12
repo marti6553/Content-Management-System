@@ -31,9 +31,8 @@
         $post_status = $row['post_status'];
 
 
-        if ($post_status !== 'published') {
-          echo "<h1> Wygląda na to, że niczego tu nie ma :(</h1>";
-        } else {
+        if ($post_status == 'published') {
+
       ?>
 
           <h1 class="page-header">

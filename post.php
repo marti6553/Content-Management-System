@@ -2,15 +2,18 @@
 <?php include "include/header.php" ?>
 <?php include "admin/functions.php" ?>
 
+
 <!-- Navigation -->
 
 <?php include "include/navigation.php" ?>
+
 
 <!-- Page Content -->
 
 <div class="container">
 
   <div class="row">
+
 
     <!-- Blog Entries Column -->
 
@@ -40,7 +43,9 @@
           <small>Secondary Text</small>
         </h1>
 
+
         <!-- First Blog Post -->
+
         <h2>
           <a href="#"><?php echo $post_title ?></a>
         </h2>
@@ -51,14 +56,14 @@
         <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
         <hr>
         <p><?php echo $post_content ?></p>
-        <a class="btn btn-primary" href="#">Rozwiń <span class="glyphicon glyphicon-chevron-right"></span></a>
+
 
         <hr>
 
       <?php } ?>
 
-      <!-- Blog Comments -->
 
+      <!-- Blog Comments -->
 
       <?php
 
@@ -84,8 +89,8 @@
       ?>
 
 
-
       <!-- Comments Form -->
+
       <div class="well">
         <h4>Zostaw Komentarz:</h4>
         <form action="" method="post" role="form">
@@ -107,6 +112,8 @@
       </div>
 
       <hr>
+
+
       <!-- Posted Comments -->
 
       <?php
@@ -136,19 +143,9 @@
           </div>
         </div>
 
-
-
-
       <?php } ?>
 
-
-
-
-
       <!-- Comment -->
-
-
-
 
     </div>
 
@@ -157,7 +154,10 @@
     <?php include "include/sidebar.php" ?>
 
   </div>
+
+
   <!-- /.row -->
+
 
   <hr>
 

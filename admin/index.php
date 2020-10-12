@@ -153,6 +153,10 @@
             <!-- /.row -->
 
             <?php
+            $query = "SELECT * FROM posts WHERE post_status = 'published'";
+            $select_all_published = mysqli_query($connection, $query);
+            $published_count = mysqli_num_rows($select_all_published);
+
             $query = "SELECT * FROM posts WHERE post_status = 'draft'";
             $select_all_draft = mysqli_query($connection, $query);
             $draft_count = mysqli_num_rows($select_all_draft);
@@ -183,14 +187,14 @@
 
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                            ['Dane', 'Ilość'],
+                            ['', 'Ilość'],
 
                             <?php
 
-                            $element_text = ['Posty', 'Posty nieopublikowane', 'Komentarze', 'Komentarze niezatwierdzone', 'Użytkownicy', 'Subskrybenci', 'Kategorie'];
-                            $element_count = [$post_count, $draft_count, $comments_count, $unapproved_count, $users_count, $subscriber_count, $categories_count];
+                            $element_text = ['Posty', 'Posty zatwierdzone', 'Posty niezatwierdzone', 'Komentarze', 'Komentarze niezatwierdzone', 'Użytkownicy', 'Subskrybenci', 'Kategorie'];
+                            $element_count = [$post_count, $published_count, $draft_count, $comments_count, $unapproved_count, $users_count, $subscriber_count, $categories_count];
 
-                            for ($i = 0; $i < 7; $i++) {
+                            for ($i = 0; $i < 8; $i++) {
                                 echo "['{$element_text[$i]}'" . ", " . "$element_count[$i]" . "],";
                             }
 

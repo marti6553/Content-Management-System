@@ -79,8 +79,6 @@ if (isset($_POST['update_post'])) {
 
       <?php
 
-
-
       $query = "SELECT * FROM categories";
       $select_categories = mysqli_query($connection, $query);
 
@@ -108,8 +106,24 @@ if (isset($_POST['update_post'])) {
   </div>
 
   <div class="form-group">
-    <label for="post_status">Status Wpisu</label>
-    <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
+
+    <select name="post_status" id="">
+      <?php
+      if ($post_status == 'draft') {
+        echo "<option value='draft'>Niezatwierdzony</option>";
+      } else {
+        echo "<option value='published'>Zatwierdzony</option>";
+      }
+
+      if ($post_status == 'published') {
+        echo "<option value='draft'>Niezatwierdzony</option>";
+      } else {
+        echo "<option value='published'>Zatwierdzony</option>";
+      }
+
+
+      ?>
+    </select>
   </div>
 
   <div class="form-group">

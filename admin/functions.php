@@ -51,8 +51,8 @@ function findAllCategories()
     echo "<tr>";
     echo "<td>{$cat_id}</td>";
     echo "<td>{$cat_title}</td>";
-    echo "<td><a href='categories.php?delete={$cat_id}'</a>Usuń</td>";
     echo "<td><a href='categories.php?edit={$cat_id}'</a>Edytuj</td>";
+    echo "<td><a href='categories.php?delete={$cat_id}'</a>Usuń</td>";
   }
 }
 

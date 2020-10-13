@@ -5,7 +5,7 @@ if (isset($_POST['create_post'])) {
   $post_title = $_POST['title'];
   $post_author = $_POST['author'];
   $post_category_id = $_POST['post_category'];
-  $post_status = $_POST['post_status'];
+  $post_status = 'draft';
 
   $post_image = $_FILES['image']['name'];
   $post_image_temp = $_FILES['image']['tmp_name'];
@@ -24,8 +24,9 @@ if (isset($_POST['create_post'])) {
   $create_post_query = mysqli_query($connection, $query);
 
   confirmQuery($create_post_query);
-}
 
+  echo "<p class='bg-success text-center'>Post został dodany i oczekuje na zatwierdzenie. <br>" . "<a href='./posts.php'>Wszystkie posty</a></p>";
+}
 
 ?>
 
@@ -69,11 +70,6 @@ if (isset($_POST['create_post'])) {
   <div class="form-group">
     <label for="title">Autor Wpisu</label>
     <input type="text" class="form-control" name="author">
-  </div>
-
-  <div class="form-group">
-    <label for="post_status">Status Wpisu</label>
-    <input type="text" class="form-control" name="post_status">
   </div>
 
   <div class="form-group">

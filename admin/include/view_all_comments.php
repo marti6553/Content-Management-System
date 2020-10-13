@@ -98,16 +98,12 @@ if (isset($_GET['unapprove'])) {
   header("Location: comments.php");
 }
 
-
-
-
 if (isset($_GET['delete'])) {
-  $the_comment_id = $_GET['delete'];
-  $query = "DELETE FROM comments WHERE comment_id = {$the_comment_id} ";
+  $the_delete_id = $_GET['delete'];
+  $query = "DELETE FROM comments WHERE comment_id = {$the_delete_id}  ";
   $delete_query = mysqli_query($connection, $query);
   header("Location: comments.php");
 }
-
 
 
 ?>

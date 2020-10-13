@@ -59,8 +59,9 @@ if (isset($_POST['update_post'])) {
   $update_post = mysqli_query($connection, $query);
 
   confirmQuery($update_post);
-}
 
+  echo "<p class='bg-success text-center'>Post został zaktualizowany.<br><a href='posts.php'>Wszystkie posty</a><br><a href='../post.php?p_id={$the_post_id}'>Zobacz post</a></p>";
+}
 
 ?>
 
@@ -138,8 +139,12 @@ if (isset($_POST['update_post'])) {
 
   <div class="form-group">
     <label for="post_content">Zawartość Wpisu</label>
-    <textarea class="form-control" name="post_content" id="" cols="30" rows="10"><?php echo $post_content; ?>
-            </textarea>
+    <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $post_content; ?></textarea>
+    <style>
+      .ck-editor__editable_inline {
+        min-height: 250px;
+      }
+    </style>
   </div>
 
   <div class="form-group">
@@ -147,3 +152,6 @@ if (isset($_POST['update_post'])) {
   </div>
 
 </form>
+
+
+<script src="./js/scripts.js"></script>

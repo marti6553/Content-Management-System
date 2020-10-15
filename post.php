@@ -69,29 +69,46 @@
 
       if (isset($_POST['create_comment'])) {
         $the_post_id = $_GET['p_id'];
-
         $comment_author = $_POST['comment_author'];
         $comment_email = $_POST['comment_email'];
         $comment_content = $_POST['comment_content'];
 
-        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
-        $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now())";
+        if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
 
-        $create_comment_query = mysqli_query($connection, $query);
-        confirmQuery($create_comment_query);
+          $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
+          $query .= "VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now())";
+
+          $create_comment_query = mysqli_query($connection, $query);
+          confirmQuery($create_comment_query);
 
 
-        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id ";
-        $update_commnet_count = mysqli_query($connection, $query);
-        confirmQuery($update_commnet_count);
+          $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id ";
+          $update_commnet_count = mysqli_query($connection, $query);
+          confirmQuery($update_commnet_count);
+          $success_message = "Twój komentarz oczekuje na akceptacje!";
+        } else {
+
+          $error_message = "Aby dodać komentarz musisz wypełnić wszystkie pola!";
+        }
       }
-
       ?>
 
 
       <!-- Comments Form -->
 
-      <div class="well">
+      <?php
+
+      if (isset($error_message)) {
+        echo "<p class='bg-danger text-center text-danger'>$error_message</p>";
+      }
+
+      if (isset($success_message)) {
+        echo "<p class='bg-success text-center text-success'>$success_message</p>";
+      }
+
+      ?>
+
+      <div id="comments" class="well">
         <h4>Zostaw Komentarz:</h4>
         <form action="" method="post" role="form">
           <div class="form-group">
@@ -107,7 +124,14 @@
             <textarea name="comment_content" class="form-control" rows="3"></textarea>
           </div>
 
-          <button type="submit" name="create_comment" class="btn btn-primary">Zapisz</button>
+          <button type="submit" name="create_comment" onclick="scrollToComments()" class="btn btn-primary">Zapisz</button>
+
+          <script>
+            function scrollToComments() {
+              window.location = '#comments';
+            }
+          </script>
+
         </form>
       </div>
 

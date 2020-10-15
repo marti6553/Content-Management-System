@@ -5,7 +5,7 @@ if (isset($_POST['create_post'])) {
   $post_title = $_POST['title'];
   $post_author = $_POST['author'];
   $post_category_id = $_POST['post_category'];
-  $post_status = 'draft';
+  $post_status = $_POST['post_status'];
 
   $post_image = $_FILES['image']['name'];
   $post_image_temp = $_FILES['image']['tmp_name'];
@@ -25,7 +25,9 @@ if (isset($_POST['create_post'])) {
 
   confirmQuery($create_post_query);
 
-  echo "<p class='bg-success text-center'>Post został dodany i oczekuje na zatwierdzenie. <br>" . "<a href='./posts.php'>Wszystkie posty</a></p>";
+  $the_post_id = mysqli_insert_id($connection);
+
+  echo "<p class='bg-success text-center'>Post został dodany.<br><a href='posts.php'>Wszystkie posty</a><br><a href='../post.php?p_id={$the_post_id}'>Zobacz post</a></p>";
 }
 
 ?>
@@ -71,6 +73,22 @@ if (isset($_POST['create_post'])) {
     <label for="title">Autor Wpisu</label>
     <input type="text" class="form-control" name="author">
   </div>
+
+  <div class="form-group">
+
+    <select name="post_status" id="">
+
+      <option value="draft">Status Postu</option>
+      <option value="published">Zatwierdzony</option>
+      <option value="draft">Niezatwierdzony</option>
+
+    </select>
+
+  </div>
+
+
+
+
 
   <div class="form-group">
     <label for="post_image">Miniatura Wpisu</label>

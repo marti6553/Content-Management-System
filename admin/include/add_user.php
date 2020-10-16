@@ -5,34 +5,29 @@ if (isset($_POST['create_user'])) {
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     $user_role = $_POST['user_role'];
-
-    // $user_ = $_FILES['image']['name'];
-    // $user_ = $_FILES['image']['tmp_name'];
-
     $username = $_POST['username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
-    // $user_ = date('Y-m-d');
 
+    if ($username == NULL || $user_password == NULL || $user_email == NULL) {
+        echo "<p class='bg-danger text-center'>Uzupełnik brakujące pola.</p>";
+    } else {
 
-    // move_uploaded_file($post_image_temp, "../images/$post_image" );
+        $username = mysqli_real_escape_string($connection, $username);
+        $email    = mysqli_real_escape_string($connection, $user_email);
+        $password = mysqli_real_escape_string($connection, $user_password);
+        $password = password_hash($password, PASSWORD_BCRYPT);
 
-    $query = "INSERT INTO users(user_firstname, user_lastname, user_role, username, user_email, user_image, user_password, randSalt )";
+        $query = "INSERT INTO users(user_firstname, user_lastname, user_role, username, user_email, user_password)";
+        $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$email}','{$password}')";
+        $create_user_query = mysqli_query($connection, $query);
+        confirmQuery($create_user_query);
 
-    $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}',0,'{$user_password}','0')";
-
-    $create_user_query = mysqli_query($connection, $query);
-
-    confirmQuery($create_user_query);
-
-    echo "Użytkownik {$username} dodany - " . "<a href='./users.php'>Lista użytkowników</a>";
+        echo "Użytkownik {$username} dodany - " . "<a href='./users.php'>Lista użytkowników</a>";
+    }
 }
 
-
 ?>
-
-
-
 <form action="" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
@@ -46,34 +41,26 @@ if (isset($_POST['create_user'])) {
     </div>
 
     <div class="form-group">
-
-        <select name="user_role" id="">
-
+        <label for="post_status">Rola</label>
+        <select class="form-control" name="user_role" id="">
             <option value="subscriber">Wybierz</option>
             <option value="admin">Administrator</option>
             <option value="subscriber">Subskrybent</option>
-
         </select>
-
     </div>
 
-    <!-- <div class="form-group">
-        <label for="post_image">Miniatura Wpisu</label>
-            <input type="file" name="image">
-    </div> -->
-
     <div class="form-group">
-        <label for="post_tags">Nazwa Użytkownika</label>
+        <label for="post_tags">Nazwa Użytkownika*</label>
         <input type="text" class="form-control" name="username">
     </div>
 
     <div class="form-group">
-        <label for="post_content">Email</label>
+        <label for="post_content">Email*</label>
         <input type="email" class="form-control" name="user_email">
     </div>
 
     <div class="form-group">
-        <label for="post_content">Hasło</label>
+        <label for="post_content">Hasło*</label>
         <input type="password" class="form-control" name="user_password">
     </div>
 

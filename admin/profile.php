@@ -18,27 +18,33 @@ if (isset($_SESSION['username'])) {
         $user_image = $row['user_image'];
         $user_role = $row['user_role'];
     }
+    if ($username == NULL || $user_password == NULL || $user_email == NULL) {
 
-    if (isset($_POST['update_profile'])) {
+        echo "<p class='bg-danger text-center'>Uzupełnik brakujące pola.</p>";
+    } else {
 
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $user_role = $_POST['user_role'];
-        $username = $_POST['username'];
-        $user_email = $_POST['user_email'];
-        $user_password = $_POST['user_password'];
+        if (isset($_POST['update_profile'])) {
 
-        $query = "UPDATE users SET ";
-        $query .= "user_firstname = '{$user_firstname}', ";
-        $query .= "user_lastname = '{$user_lastname}', ";
-        $query .= "user_role = '{$user_role}', ";
-        $query .= "username = '{$username}', ";
-        $query .= "user_email = '{$user_email}', ";
-        $query .= "user_password = '{$user_password}' ";
-        $query .= "WHERE user_id = {$user_id} ";
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_role = $_POST['user_role'];
+            $username = $_POST['username'];
+            $user_email = $_POST['user_email'];
+            $user_password = $_POST['user_password'];
+            $user_password = password_hash($user_password, PASSWORD_BCRYPT);
 
-        $edit_user_query = mysqli_query($connection, $query);
-        confirmQuery($edit_user_query);
+            $query = "UPDATE users SET ";
+            $query .= "user_firstname = '{$user_firstname}', ";
+            $query .= "user_lastname = '{$user_lastname}', ";
+            $query .= "user_role = '{$user_role}', ";
+            $query .= "username = '{$username}', ";
+            $query .= "user_email = '{$user_email}', ";
+            $query .= "user_password = '{$user_password}' ";
+            $query .= "WHERE user_id = {$user_id} ";
+
+            $edit_user_query = mysqli_query($connection, $query);
+            confirmQuery($edit_user_query);
+        }
     }
 }
 ?>
@@ -77,8 +83,8 @@ if (isset($_SESSION['username'])) {
                         </div>
 
                         <div class="form-group">
-
-                            <select name="user_role" id="">
+                            <label>Rola</label>
+                            <select class="form-control" name="user_role" id="">
                                 <option value="subscriber"><?php echo $user_role ?></option>
 
                                 <?php
@@ -91,16 +97,9 @@ if (isset($_SESSION['username'])) {
 
                                 ?>
 
-
-
                             </select>
 
                         </div>
-
-                        <!-- <div class="form-group">
-      <label for="post_image">Miniatura Wpisu</label>
-          <input type="file" name="image">
-  </div> -->
 
                         <div class="form-group">
                             <label for="post_tags">Nazwa Użytkownika</label>
@@ -113,9 +112,11 @@ if (isset($_SESSION['username'])) {
                         </div>
 
                         <div class="form-group">
-                            <label for="post_content">Hasło</label>
-                            <input value="<?php echo $user_password ?>" type="password" class="form-control" name="user_password">
+                            <label for="post_content">Nowe Hasło</label>
+                            <input value="" type="password" class="form-control" name="user_password">
                         </div>
+
+
 
                         <div class="form-group">
                             <input class="btn btn-primary" type="submit" name="update_profile" value="Zapisz zmiany">

@@ -31,6 +31,9 @@
         <li>
           <a href="admin/index.php">ADMIN</a>
         </li>
+        <li>
+          <a href="./registration.php">Rejestracja</a>
+        </li>
 
         <?php
 

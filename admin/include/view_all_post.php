@@ -71,7 +71,7 @@ if (isset($_POST['chcekBoxArray'])) {
 
             <?php
 
-            $query = "SELECT * FROM posts";
+            $query = "SELECT * FROM posts ORDER BY post_id";
             $select_post = mysqli_query($connection, $query);
 
             while ($row = mysqli_fetch_assoc($select_post)) {
@@ -116,7 +116,7 @@ if (isset($_POST['chcekBoxArray'])) {
                 echo "<td>$post_comment_count</td>";
                 echo "<td>$post_date</td>";
                 echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edytuj</a></td>";
-                echo "<td><a href='posts.php?delete={$post_id}'>Usuń</a></td>";
+                echo "<td><a onClick=\"javascript: return confirm('Na pewno chcesz usunąć ten post?'); \" href='posts.php?delete={$post_id}'>Usuń</a></td>";
                 echo "</tr>";
             }
 

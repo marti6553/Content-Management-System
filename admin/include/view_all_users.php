@@ -15,7 +15,7 @@
 
     <?php
 
-    $query = "SELECT * FROM users";
+    $query = "SELECT * FROM users ORDER BY user_id";
     $select_users = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_users)) {
@@ -40,11 +40,9 @@
 
       // $query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
       // $select_post_id_query = mysqli_query($connection, $query);
-      //
       // while($row = mysqli_fetch_assoc($select_post_id_query)) {
       //   $post_id = $row['post_id'];
       //   $post_title = $row['post_title'];
-      //
       //   echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
       //
       // }
@@ -54,7 +52,7 @@
       echo "<td><a href='users.php?change_to_admin=$user_id'>Admin</a></td>";
       echo "<td><a href='users.php?change_to_sub=$user_id'>Subskrybent</a></td>";
       echo "<td><a href='users.php?source=edit_user&edit_user=$user_id'>Edytuj</a></td>";
-      echo "<td><a href='users.php?delete=$user_id'>Usuń</a></td>";
+      echo "<td><a onClick=\"javascript: return confirm('Na pewno chcesz usunąć tę kategorię?'); \" href='users.php?delete=$user_id'>Usuń</a></td>";
 
       echo "</tr>";
     }

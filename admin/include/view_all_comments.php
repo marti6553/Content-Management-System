@@ -18,7 +18,7 @@
 
     <?php
 
-    $query = "SELECT * FROM comments";
+    $query = "SELECT * FROM comments ORDER BY comment_id";
     $select_comments = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_comments)) {
@@ -73,7 +73,7 @@
       echo "<td>$comment_date</td>";
       echo "<td><a href='comments.php?approve={$comment_id}'>Zatwierdź</a></td>";
       echo "<td><a href='comments.php?unapprove={$comment_id}'>Odrzuć</a></td>";
-      echo "<td><a href='comments.php?delete={$comment_id}'>Usuń</a></td>";
+      echo "<td><a onClick=\"javascript: return confirm('Na pewno chcesz usunąć ten komentarz?'); \" href='comments.php?delete={$comment_id}'>Usuń</a></td>";
       echo "</tr>";
     }
 

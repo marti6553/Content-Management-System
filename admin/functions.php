@@ -42,7 +42,7 @@ function findAllCategories()
 
   global $connection;
 
-  $query = "SELECT * FROM categories";
+  $query = "SELECT * FROM categories ORDER BY cat_id";
   $select_categories = mysqli_query($connection, $query);
 
   while ($row = mysqli_fetch_assoc($select_categories)) {
@@ -52,7 +52,7 @@ function findAllCategories()
     echo "<td>{$cat_id}</td>";
     echo "<td>{$cat_title}</td>";
     echo "<td><a href='categories.php?edit={$cat_id}'</a>Edytuj</td>";
-    echo "<td><a href='categories.php?delete={$cat_id}'</a>Usuń</td>";
+    echo "<td><a onClick=\"javascript: return confirm('Na pewno chcesz usunąć tę kategorię?'); \" href='categories.php?delete={$cat_id}'</a>Usuń</td>";
   }
 }
 

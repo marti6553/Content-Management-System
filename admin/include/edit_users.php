@@ -10,7 +10,6 @@ $select_user_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_user_by_id)) {
   $user_id = $row['user_id'];
   $username = $row['username'];
-  $user_password = $row['user_password'];
   $user_firstname = $row['user_firstname'];
   $user_lastname = $row['user_lastname'];
   $user_email = $row['user_email'];
@@ -18,39 +17,37 @@ while ($row = mysqli_fetch_assoc($select_user_by_id)) {
   $user_role = $row['user_role'];
 }
 
-
-
-
 if (isset($_POST['edit_user'])) {
 
   $user_firstname = $_POST['user_firstname'];
   $user_lastname = $_POST['user_lastname'];
   $user_role = $_POST['user_role'];
-
-  // $user_ = $_FILES['image']['name'];
-  // $user_ = $_FILES['image']['tmp_name'];
-
   $username = $_POST['username'];
   $user_email = $_POST['user_email'];
   $user_password = $_POST['user_password'];
-  // $user_ = date('Y-m-d');
 
+  if ($username == NULL || $user_password == NULL || $user_email == NULL) {
+    echo "<p class='bg-danger text-center'>Uzupełnik wymagane pola.</p>";
+  } else {
 
-  // move_uploaded_file($post_image_temp, "../images/$post_image" );
+    $username = mysqli_real_escape_string($connection, $username);
+    $user_email    = mysqli_real_escape_string($connection, $user_email);
+    $user_password = password_hash($user_password, PASSWORD_BCRYPT);
 
-  $query = "UPDATE users SET ";
-  $query .= "user_firstname = '{$user_firstname}', ";
-  $query .= "user_lastname = '{$user_lastname}', ";
-  $query .= "user_role = '{$user_role}', ";
-  $query .= "username = '{$username}', ";
-  $query .= "user_email = '{$user_email}', ";
-  $query .= "user_password = '{$user_password}' ";
-  $query .= "WHERE user_id = {$the_user_id} ";
+    $query = "UPDATE users SET ";
+    $query .= "user_firstname = '{$user_firstname}', ";
+    $query .= "user_lastname = '{$user_lastname}', ";
+    $query .= "user_role = '{$user_role}', ";
+    $query .= "username = '{$username}', ";
+    $query .= "user_email = '{$user_email}', ";
+    $query .= "user_password = '{$user_password}' ";
+    $query .= "WHERE user_id = {$the_user_id} ";
 
-  $edit_user_query = mysqli_query($connection, $query);
-  confirmQuery($edit_user_query);
+    $edit_user_query = mysqli_query($connection, $query);
+    confirmQuery($edit_user_query);
+    echo "<p class='bg-success text-center'>Profil został zaktualizowany.</p>";
+  }
 }
-
 
 
 
@@ -71,8 +68,9 @@ if (isset($_POST['edit_user'])) {
   </div>
 
   <div class="form-group">
+    <label for="title">Rola</label>
+    <select class="form-control" name="user_role" id="">
 
-    <select name="user_role" id="">
       <option value="<?php echo $user_role ?>"><?php echo $user_role ?></option>
 
       <?php
@@ -97,18 +95,18 @@ if (isset($_POST['edit_user'])) {
     </div> -->
 
   <div class="form-group">
-    <label for="post_tags">Nazwa Użytkownika</label>
+    <label for="post_tags">Nazwa Użytkownika*</label>
     <input value="<?php echo $username ?>" type="text" class="form-control" name="username">
   </div>
 
   <div class="form-group">
-    <label for="post_content">Email</label>
+    <label for="post_content">Email*</label>
     <input value="<?php echo $user_email ?>" type="email" class="form-control" name="user_email">
   </div>
 
   <div class="form-group">
-    <label for="post_content">Hasło</label>
-    <input value="<?php echo $user_password ?>" type="password" class="form-control" name="user_password">
+    <label for="post_content">Nowe Hasło*</label>
+    <input type="password" class="form-control" name="user_password">
   </div>
 
   <div class="form-group">

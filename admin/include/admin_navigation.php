@@ -60,10 +60,21 @@
                         <a href="users.php?source=add_user">Dodaj Użytkownika</a>
                     </li>
                 </ul>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#profile_dropdown"><i class="fas fa-id-card"></i> Profil <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="profile_dropdown" class="collapse">
+                    <li>
+                        <a href="profile.php">Edytuj Dane</a>
+                    </li>
+                    <li>
+                        <a href="profile.php?source=change_pass">Zmień Hasło</a>
+                    </li>
+                </ul>
             </li>
-            <li class="active">
-                <a href="profile.php"><i class="fas fa-id-card"></i> Profile</a>
-            </li>
+
+
+
+
 
         </ul>
     </div>

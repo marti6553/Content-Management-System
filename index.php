@@ -15,6 +15,11 @@
 
     <div class="col-md-8">
 
+      <h1 class="page-header">
+        Page Heading
+        <small>Secondary Text</small>
+      </h1>
+
       <?php
 
       $query = "SELECT * FROM posts";
@@ -35,17 +40,12 @@
 
       ?>
 
-          <h1 class="page-header">
-            Page Heading
-            <small>Secondary Text</small>
-          </h1>
-
           <!-- First Blog Post -->
           <h2>
-            <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title ?></a>
+            <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
           </h2>
 
-          <span class="glyphicon glyphicon-time"></span> Dodano <?php echo $post_date ?> przez <a href="index.php"><?php echo $post_author ?></a>
+          <span class="glyphicon glyphicon-time"></span> Dodano <?php echo $post_date; ?> przez <a href="author_post.php?author=<?php echo $post_author; ?>&p_id=<?php echo $post_id; ?>"><?php echo $post_author; ?></a>
 
           <hr>
           <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src="images/<?php echo $post_image; ?>" alt=""></a>

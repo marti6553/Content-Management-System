@@ -8,7 +8,7 @@ $(document).ready(function () {
 
         });
 
-    // REST OF THE CODE
+    // CHECKBOXES IN VIEW_ALL_POSTS
 
     $('#selectAllBoxes').click(function (event) {
 
@@ -26,6 +26,11 @@ $(document).ready(function () {
         }
 
     });
+
+    // REST OF THE CODE
+
+
+
 
 
 });

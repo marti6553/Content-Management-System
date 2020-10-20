@@ -75,8 +75,8 @@ if (isset($_POST['update_post'])) {
   </div>
 
   <div class="form-group">
-
-    <select name="post_category" id="">
+    <label for="title">Kategoria Wpisu</label>
+    <select class="form-control" name="post_category" id="">
 
       <?php
 
@@ -107,8 +107,8 @@ if (isset($_POST['update_post'])) {
   </div>
 
   <div class="form-group">
-
-    <select name="post_status" id="">
+    <label for="title">Status Wpisu</label>
+    <select class="form-control" name="post_status" id="">
       <?php
       if ($post_status == 'draft') {
         echo "<option value='draft'>Niezatwierdzony</option>";

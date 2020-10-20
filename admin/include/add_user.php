@@ -10,7 +10,7 @@ if (isset($_POST['create_user'])) {
     $user_password = $_POST['user_password'];
 
     if ($username == NULL || $user_password == NULL || $user_email == NULL) {
-        echo "<p class='bg-danger text-center'>Uzupełnik brakujące pola.</p>";
+        echo "<p class='bg-danger text-center'>Uzupełnik wymagane pola.</p>";
     } else {
 
         $username = mysqli_real_escape_string($connection, $username);

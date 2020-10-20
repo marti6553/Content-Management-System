@@ -15,14 +15,14 @@
 
     <div class="col-md-8">
 
-      <h1 class="page-header">
+      <h1 class="page-header text-center">
         Page Heading
         <small>Secondary Text</small>
       </h1>
 
       <?php
 
-      $query = "SELECT * FROM posts";
+      $query = "SELECT * FROM posts ORDER BY post_id DESC";
       $select_all_post_query = mysqli_query($connection, $query);
 
       while ($row = mysqli_fetch_assoc($select_all_post_query)) {
@@ -45,7 +45,7 @@
             <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
           </h2>
 
-          <span class="glyphicon glyphicon-time"></span> Dodano <?php echo $post_date; ?> przez <a href="author_post.php?author=<?php echo $post_author; ?>&p_id=<?php echo $post_id; ?>"><?php echo $post_author; ?></a>
+          <span class="glyphicon glyphicon-time"></span> Dodano <?php echo $post_date; ?> przez <a href="author_post.php?author=<?php echo $post_author; ?>"><?php echo $post_author; ?></a>
 
           <hr>
           <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src="images/<?php echo $post_image; ?>" alt=""></a>

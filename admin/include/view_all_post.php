@@ -3,7 +3,6 @@
 if (isset($_POST['chcekBoxArray'])) {
     foreach ($_POST['chcekBoxArray'] as $postId) {
         $bulk_options = $_POST['bulk_options'];
-
         switch ($bulk_options) {
             case 'published':
 
@@ -37,17 +36,17 @@ if (isset($_POST['chcekBoxArray'])) {
                     $post_content = $row['post_content'];
                 }
 
-            case 'reset_count':
-
-                $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = '{$postId}' ";
-                $select_reset_count = mysqli_query($connection, $query);
-                break;
-
                 $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status)";
 
                 $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}', now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}')";
                 $copy_query = mysqli_query($connection, $query);
                 confirmQuery($copy_query);
+                break;
+
+            case 'reset_count':
+
+                $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = '{$postId}' ";
+                $select_reset_count = mysqli_query($connection, $query);
                 break;
         }
     }

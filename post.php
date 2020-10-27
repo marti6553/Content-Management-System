@@ -91,9 +91,6 @@
           confirmQuery($create_comment_query);
 
 
-          $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id ";
-          $update_commnet_count = mysqli_query($connection, $query);
-          confirmQuery($update_commnet_count);
           $success_message = "Twój komentarz oczekuje na akceptacje!";
         } else {
 

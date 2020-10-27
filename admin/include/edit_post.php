@@ -10,7 +10,7 @@ $select_posts_by_id = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
   $post_id = $row['post_id'];
-  $post_author = $row['post_author'];
+  $post_user = $row['post_user'];
   $post_title = $row['post_title'];
   $post_category_id = $row['post_category_id'];
   $post_status = $row['post_status'];
@@ -103,7 +103,27 @@ if (isset($_POST['update_post'])) {
 
   <div class="form-group">
     <label for="title">Autor Wpisu</label>
-    <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="post_author">
+    <select class="form-control" name="post_author">
+
+
+      <?php echo "<option value='{$username}'>{$post_user}</option>"; ?>
+
+      <?php
+
+      $query = "SELECT * FROM users";
+      $select_all_users = mysqli_query($connection, $query);
+
+      confirmQuery($select_all_users);
+
+      while ($row = mysqli_fetch_assoc($select_all_users)) {
+        $user_id = $row['user_id'];
+        $username = $row['username'];
+        echo "<option value='{$username}'>{$username}</option>";
+      }
+
+      ?>
+
+    </select>
   </div>
 
   <div class="form-group">

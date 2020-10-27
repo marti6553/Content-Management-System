@@ -84,7 +84,7 @@ if (isset($_POST['chcekBoxArray'])) {
                 <th><input id="selectAllBoxes" type="checkbox">
                 </th>
                 <th>ID</th>
-                <th>Autor</th>
+                <th>Użytkownik</th>
                 <th>Tytuł</th>
                 <th>Kategoria</th>
                 <th>Status</th>
@@ -109,6 +109,7 @@ if (isset($_POST['chcekBoxArray'])) {
             while ($row = mysqli_fetch_assoc($select_post)) {
                 $post_id = $row['post_id'];
                 $post_author = $row['post_author'];
+                $post_user = $row['post_user'];
                 $post_title = $row['post_title'];
                 $post_category_id = $row['post_category_id'];
                 $post_status = $row['post_status'];
@@ -126,7 +127,24 @@ if (isset($_POST['chcekBoxArray'])) {
             <?php
 
                 echo "<td>$post_id</td>";
-                echo "<td>$post_author</td>";
+
+
+
+
+                if (!empty($post_author)) {
+                    echo "<td>$post_author</td>";
+                } elseif (!empty($post_user)) {
+                    echo "<td>$post_user</td>";
+                }
+
+
+
+
+
+
+
+
+
                 echo "<td><a href='../post.php?p_id={$post_id}'>$post_title</a></td>";
 
                 $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id} ";

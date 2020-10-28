@@ -34,6 +34,9 @@
         <li>
           <a href="./registration.php">Rejestracja</a>
         </li>
+        <li>
+          <a href="./contact.php">Kontakt</a>
+        </li>
 
         <?php
 

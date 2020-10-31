@@ -23,23 +23,40 @@
 
 
   <!-- Login -->
-  <div class="well">
-    <h4>Logowanie</h4>
-    <form action="include/login.php" method="post">
-      <div class="form-group">
-        <input name="username" type="text" class="form-control" placeholder="Login">
-      </div>
-      <div class="input-group">
-        <input name="password" type="password" class="form-control" placeholder="Hasło">
-        <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit" name="login">Zaloguj się</button>
-        </span>
-      </div>
-    </form> <!-- search form  -->
+  <?php
+  if (isset($_SESSION['user_role'])) {
+  ?>
+    <div class="well">
+      <h4 class='text-center'>Zalogowany jako <?php echo $_SESSION['username']; ?></h4>
+      <h6 class='text-center'>Ranga <?php echo $_SESSION['user_role']; ?></h6>
+      <form action="">
+        <div class='text-center'>
+          <a class="btn btn-primary" href=".\admin\include\logout.php">Wyloguj</a>
+        </div>
+      </form>
+    </div>
+  <?php
+  } else {
+  ?>
+    <div class="well">
+      <h4>Logowanie</h4>
+      <form action="include/login.php" method="post">
+        <div class="form-group">
+          <input name="username" type="text" class="form-control" placeholder="Login">
+        </div>
+        <div class="input-group">
+          <input name="password" type="password" class="form-control" placeholder="Hasło">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit" name="login">Zaloguj się</button>
+          </span>
+        </div>
+      </form>
+    </div>
+  <?php } ?>
 
 
-    <!-- /.input-group -->
-  </div>
+
+
 
 
   <!-- Blog Categories Well -->

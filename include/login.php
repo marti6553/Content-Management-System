@@ -27,16 +27,23 @@ if (isset($_POST['login'])) {
   }
 
 
-  if ($username === $db_username && password_verify($password, $db_user_password) === true) {
+  if ($username === $db_username && password_verify($password, $db_user_password) === true && $db_user_role == 'admin') {
 
     $_SESSION['username'] = $db_username;
     $_SESSION['firstname'] = $db_user_firstname;
     $_SESSION['lastname'] = $db_user_lastname;
     $_SESSION['user_role'] = $db_user_role;
-
     header("Location: ../admin/index.php");
+  } elseif ($username === $db_username && password_verify($password, $db_user_password) === true) {
+    $_SESSION['username'] = $db_username;
+    $_SESSION['firstname'] = $db_user_firstname;
+    $_SESSION['lastname'] = $db_user_lastname;
+    $_SESSION['user_role'] = $db_user_role;
+
+    header("Location: ../index.php");
   } else {
     header("Location: ../index.php");
   }
 }
 ?>
+

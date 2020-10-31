@@ -18,13 +18,43 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        <li>
-          <a href="admin/index.php">ADMIN</a>
-        </li>
-        <li>
-          <a href="./registration.php">Rejestracja</a>
-        </li>
-        <li>
+        <?php
+        $registration_class = '';
+        $contact_class = '';
+        $pageName = basename($_SERVER['PHP_SELF']);
+        $registration = 'registration.php';
+        $contact = 'contact.php';
+
+        if ($pageName == $registration) {
+          $registration_class = 'active';
+        }
+        if ($pageName == $contact) {
+          $contact_class = 'active';
+        }
+
+        ?>
+        <?php
+
+        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+        ?>
+          <li>
+            <a href="admin/index.php">ADMIN</a>
+          </li>
+        <?php
+        }
+        ?>
+
+        <?php
+        if (is_null($_SESSION['user_role'])) {
+        ?>
+          <li class=<?php echo $registration_class ?>>
+            <a href="./registration.php">Rejestracja</a>
+          </li>
+        <?php
+        }
+        ?>
+
+        <li class=<?php echo $contact_class ?>>
           <a href="./contact.php">Kontakt</a>
         </li>
 

@@ -45,7 +45,7 @@
         ?>
 
         <?php
-        if (is_null($_SESSION['user_role'])) {
+        if (!isset($_SESSION['user_role'])) {
         ?>
           <li class=<?php echo $registration_class ?>>
             <a href="./registration.php">Rejestracja</a>

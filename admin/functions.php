@@ -1,3 +1,4 @@
+
 <?php
 
 function users_online()
@@ -35,8 +36,6 @@ function users_online()
 users_online();
 
 
-
-
 function confirmQuery($result)
 {
 
@@ -46,6 +45,7 @@ function confirmQuery($result)
     die("QUERY FAILD: " . mysqli_error($connection));
   }
 }
+
 
 function insert_categories()
 {
@@ -104,4 +104,29 @@ function delete_categories()
     $delete_categories = mysqli_query($connection, $query);
     header("Location: categories.php");
   }
+}
+
+
+/**** ADMIN DASHBOARD STATS COUNTERS ****/
+
+function recordCount($table)
+{
+  global $connection;
+
+  $query = "SELECT * FROM " . $table;
+  $select_all_post = mysqli_query($connection, $query);
+  $result = mysqli_num_rows($select_all_post);
+  confirmQuery($result);
+  return $result;
+}
+
+function checkStatus($table, $column, $status)
+{
+  global $connection;
+
+  $query = "SELECT * FROM $table WHERE $column = '$status'";
+  $select_all_published = mysqli_query($connection, $query);
+  $result = mysqli_num_rows($select_all_published);
+  confirmQuery($select_all_published);
+  return $result;
 }
